@@ -1,0 +1,71 @@
+﻿@model List<APILibros.Models.Book>
+
+@{
+    ViewBag.Title = "Libros";
+}
+
+<style>
+    body {
+        background-color: #E0F2F1; /* Verde claro */
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+        color: #4B0082;
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .btn-custom {
+        background-color: #D1C4E9;
+        color: #4B0082;
+        border: none;
+    }
+
+        .btn-custom:hover {
+            background-color: #B39DDB;
+            color: white;
+        }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        background-color: white;
+    }
+
+        .card h5 {
+            color: #4B0082;
+            font-weight: bold;
+        }
+</style>
+
+<div class="container">
+
+    <h2>Buscar Libros</h2>
+
+    <form method="get" class="form-inline mb-4">
+        <input type="text" name="query" class="form-control mr-2" value="@ViewBag.Query" placeholder="Buscar..." />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+    @if (Model.Any())
+    {
+        <div class="list-group">
+            @foreach (var book in Model)
+            {
+                <div class="list-group-item">
+                    <h5 class="mb-1">@book.Title</h5>
+                    <p class="mb-1"><strong>Autor:</strong> @book.AuthorName</p>
+                    <small><strong>Año de publicación:</strong> @book.FirstPublishYear</small>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No se encontraron resultados.</p>
+    }
